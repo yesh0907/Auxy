@@ -3,11 +3,13 @@ Rails.application.routes.draw do
   resources :records, only: [:create, :update]
 
   post 'diagnosis/diagnose', 'diagnosis#diagnose'
-  post 'diagnosis/search/symptom', 'diagnosis#search_symptom'
   post 'diagnosis/triage', 'diagnosis#triage'
   post 'diagnosis/parse', 'diagnosis#parse'
+  get 'diagnosis/symptoms', to: 'diagnosis#all_symptoms'
 
-  get 'scrape/ktph', 'scrape#ktph'
-  get 'scrape/ttsh', 'scrape#ttsh'
-  get 'scrape/shortest', 'scrape#shortest'
+  get 'scrape/ktph', to: 'scrape#ktph'
+  get 'scrape/ttsh', to: 'scrape#ttsh'
+  get 'scrape/shortest', to: 'scrape#shortest'
+
+  #get 'mobile/receive', to: 'twilio#receive_sms'
 end

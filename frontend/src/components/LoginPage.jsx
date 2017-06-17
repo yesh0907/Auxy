@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 //Other Components
 import Navbar from './navbar.jsx';
-import SymptomCard from './SymptomCard';
-import SymptomStepper from './SymptomStepper';
+import LoginForm from './LoginForm.jsx';
 
 class HomePage extends Component {
   render() {
     return (
       <div>
-        <Navbar></Navbar>
-        <SymptomStepper />
-        <br />
-        <SymptomCard />
+        <Navbar />
+        <LoginForm />
       </div>
     );
   }

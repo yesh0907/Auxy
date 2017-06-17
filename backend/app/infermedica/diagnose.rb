@@ -1,6 +1,6 @@
 require 'infermedica'
 require 'rest-client'
-require 'JSON'
+require 'rubygems'
 
 class Diagnose
   def self.call(info)
