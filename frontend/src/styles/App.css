@@ -5,6 +5,10 @@
   align-items: center;
 }
 
+.or:before {
+  border: 1px solid grey;
+}
+
 .triage {
 
 }
@@ -63,7 +67,12 @@
   font-size: 1.25em;
 }
 
+.ui.card {
+  box-shadow: none;
+}
+
 .hospital {
   display: flex;
   flex-direction: row;
 }
+

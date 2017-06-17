@@ -5,6 +5,7 @@ import SymptomForm from './SymptomForm';
 
 class SymptomCard extends Component {
   render() {
+    const { user, diagnose, history } = this.props;
     return (
       <div>
         <Grid columns={1} centered>
@@ -16,7 +17,7 @@ class SymptomCard extends Component {
                     Symptoms Checker
                   </Card.Header>
                   <Card.Description>
-                    <SymptomForm />
+                    <SymptomForm user={user} diagnose={diagnose} history={history}/>
                   </Card.Description>
                 </Card.Content>
               </Card>
