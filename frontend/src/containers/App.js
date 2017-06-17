@@ -12,8 +12,7 @@ import '../styles/App.css';
 
 class App extends Component {
   componentWillMount() {
-    console.log(this.props.user);
-    this.props.actions.getUser(this.props.user.user_id);
+    this.props.actions.fetchUser(this.props.user.user_id);
   }
 
   render() {

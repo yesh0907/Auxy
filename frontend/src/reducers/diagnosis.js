@@ -2,7 +2,8 @@
 
 const initialState = {
   value: '',
-  evidence: []
+  evidence: [],
+  question: {}
 };
 
 export default function diagnosis(state=initialState, action) {
