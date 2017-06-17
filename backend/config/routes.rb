@@ -1,3 +1,13 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  resources :users, only: [:create, :show]
+  resources :records, only: [:create, :update]
+
+  post 'diagnosis/diagnose', 'diagnosis#diagnose'
+  post 'diagnosis/search/symptom', 'diagnosis#search_symptom'
+  post 'diagnosis/triage', 'diagnosis#triage'
+  post 'diagnosis/parse', 'diagnosis#parse'
+
+  get 'scrape/ktph', 'scrape#ktph'
+  get 'scrape/ttsh', 'scrape#ttsh'
+  get 'scrape/shortest', 'scrape#shortest'
 end
