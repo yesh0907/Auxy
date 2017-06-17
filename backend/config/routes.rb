@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   resources :records, only: [:create, :update]
 
   post 'diagnosis/diagnose', 'diagnosis#diagnose'
-  post 'diagnosis/search/symptom', 'diagnosis#search_symptom'
   post 'diagnosis/triage', 'diagnosis#triage'
   post 'diagnosis/parse', 'diagnosis#parse'
 

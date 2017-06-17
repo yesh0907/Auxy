@@ -1,5 +1,6 @@
 require 'infermedica'
 require 'rest-client'
+require 'rubygems'
 require 'JSON'
 
 class Diagnose
