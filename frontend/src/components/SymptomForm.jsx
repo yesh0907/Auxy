@@ -219,8 +219,7 @@ class SymptomForm extends Component {
               {this.state.savedSymptoms.map((symptom, index) => (<List.Item key={index} onClick={console.log(symptom.value)}><List.Content><List.Header>{symptom.value}</List.Header></List.Content></List.Item>))}
             </List>
           </Form.Field>
-          <br />
-          <Button type="submit" color="teal" as={Link} to={'/questions'}>Diagnose</Button>
+          <Button type="submit" color="teal" size='big' as={Link} to={'/questions'}>Diagnose</Button>
         </Form>
       </div>
     );

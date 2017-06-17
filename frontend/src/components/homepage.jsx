@@ -7,7 +7,7 @@ import SymptomStepper from './SymptomStepper';
 class HomePage extends Component {
   render() {
     return (
-      <div>
+      <div className="Page">
         <Navbar></Navbar>
         <SymptomStepper />
         <br />

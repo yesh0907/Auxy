@@ -1,3 +1,7 @@
+.Page {
+  background: #C6E3DC;
+}
+
 .App {
   text-align: center;
   display: flex;
@@ -66,4 +70,8 @@
 .hospital {
   display: flex;
   flex-direction: row;
+}
+
+.directions {
+  background: white;
 }
