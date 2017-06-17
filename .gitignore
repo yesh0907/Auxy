@@ -1,4 +1,4 @@
-
+.DS_STORE
 # Created by https://www.gitignore.io/api/node,rails
 
 ### Node ###
@@ -67,9 +67,9 @@ typings/
 capybara-*.html
 .rspec
 /log
-/tmp
-/db/*.sqlite3
-/db/*.sqlite3-journal
+backend/tmp
+backend/db/*.sqlite3
+backend/db/*.sqlite3-journal
 /public/system
 /coverage/
 /spec/tmp
@@ -108,3 +108,5 @@ bower.json
 .byebug_history
 
 # End of https://www.gitignore.io/api/node,rails
+
+backend/config/application.yml
