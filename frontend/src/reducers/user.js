@@ -22,7 +22,7 @@ export default function diagnosis(state=initialState, action) {
     case UPDATE_RECORDS:
       return {
         ...state,
-        records: records.push(action.payload)
+        records: state.records.push(action.payload)
       }
     default:
       return state;
