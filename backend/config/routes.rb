@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   get 'scrape/ttsh', to: 'scrape#ttsh'
   get 'scrape/shortest', to: 'scrape#shortest'
 
-  get 'mobile/receive', to: 'twilio#receive_sms'
+  #get 'mobile/receive', to: 'twilio#receive_sms'
 end
