@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //Semantic-UI
-import { Input, Grid, Header, Button, Form, Checkbox, Dropdown, Label } from 'semantic-ui-react';
+import { Input, Grid, Header, Button, Form, Checkbox, Dropdown, Label, List } from 'semantic-ui-react';
 //Imports Input Range Slider
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
@@ -10,11 +10,14 @@ import '../styles/symptomform.css';
 import { Link } from 'react-router-dom';
 import Autosuggest from 'react-autosuggest';
 
+import _ from 'lodash';
+
 let algoliasearch = require('algoliasearch');
 let axios = require('axios');
 let baseUrl = 'https://auxy-ahsg.herokuapp.com/';
 
 let client = algoliasearch('S2379UOSVF', '11d9d26a522ab9bde5f1078f71a2d68f');
+let index = client.initIndex('symptoms');
 
 class SymptomForm extends Component {
   constructor() {
@@ -74,7 +77,86 @@ class SymptomForm extends Component {
       });
     }
 
+  handleChange(input) {
+    index.search(input, function searchDone(err, content) {
+      if(err) {
+        console.err(err);
+        return;
+      };
+
+      for (var h in content.hits) {
+        console.log('Hit(' + content.hits[h].id + '): ' + content.hits[h].name.toString());
+      }
+    })
+  }
+
+  getOptions(input) {
+    let outerThis = this;
+    index.search(input, function searchDone(err, content) {
+      if(err) {
+        console.err(err);
+        return;
+      };
+      let arrayOfHits = [];
+      for (let h in content.hits) {
+        console.log('Hit(' + content.hits[h].id + '): ' + content.hits[h].name.toString());
+        console.log(content.hits[h].objectID);
+        arrayOfHits.push({
+          key: content.hits[h].objectID,
+          text: content.hits[h].name.toString(),
+          value: _.snakeCase(content.hits[h].name.toString())
+        });
+      };
+      outerThis.setState({
+        options: arrayOfHits,
+        isFetching: false
+      });
+    });
+  }
+
+  componentWillMount() {
+    this.setState({
+      isFetching: false,
+      multiple: true,
+      search: true,
+      searchQuery: null,
+      savedSymptoms: [],
+      options: this.getOptions('a'),
+    })
+  }
+  //Handles List of Confirmed Symptoms
+  handleChange = (e, { value }) => {
+    let currentSymptoms = this.state.savedSymptoms;
+    let alreadySymptom = false;
+    let index = 0;
+    let newVal = _.replace({value}.value, /\_/g, ' ');
+    newVal = _.upperFirst(newVal);
+    console.log(newVal);
+    for (let symptom in currentSymptoms) {
+      if (currentSymptoms[symptom].value == newVal) {
+        alreadySymptom = true;
+        index = symptom;
+        break;
+      }
+    }
+    if (!alreadySymptom) {
+      currentSymptoms.push({
+        value: newVal
+      });
+      this.setState({ savedSymptoms: currentSymptoms});
+    }
+    console.log(currentSymptoms);
+  };
+  //Constantly Updates
+  handleSearchChange = (e, value) => {this.setState({ searchQuery: value }); this.fetchOptions(value)};
+
+  fetchOptions = (input) => {
+    this.setState({ isFetching: true })
+    this.getOptions(input);
+  }
+
   render() {
+    const { multiple, options, isFetching, search, value } = this.state;
     return (
       <div>
         <Form onSubmit={this.handleSubmit}>
@@ -94,10 +176,24 @@ class SymptomForm extends Component {
           <br />
           <Form.Field>
             <label>Symptoms</label>
-
+            <Dropdown
+              fluid
+              selection
+              search={search}
+              options={options}
+              value={value}
+              placeholder='Add Symptoms'
+              onChange={this.handleChange}
+              onSearchChange={this.handleSearchChange}
+              disabled={isFetching}
+              loading={isFetching}
+              />
           </Form.Field>
           <Form.Field inline>
             <label>Selected Symptoms</label>
+            <List selection>
+              {this.state.savedSymptoms.map((symptom, index) => (<List.Item key={index} onClick={console.log(symptom.value)}><List.Content><List.Header>{symptom.value}</List.Header></List.Content></List.Item>))}
+            </List>
           </Form.Field>
           <br />
           <Button type="submit" color="teal" as={Link} to={'/questions'}>Diagnose</Button>
