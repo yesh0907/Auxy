@@ -23,13 +23,15 @@ class Navbar extends Component {
             <Image src={process.env.PUBLIC_URL + 'auxy-white.png'} size='mini' />
           </Menu.Item>
           <Menu.Item style={{fontSize: '20px'}} name="About" as={Link} to="/about" />
-          <Modal trigger={<Menu.Item position="right" style={{fontSize: '20px'}} name="Login" />}>
-            <LoginModal />
-          </Modal>
+          <Menu.Item position="right" style={{fontSize: '20px'}} name="Login" as={Link} to='/login' />
         </Menu>
       </div>
     );
   }
 }
+//Old Modal
+// <Modal trigger={<Menu.Item position="right" style={{fontSize: '20px'}} name="Login" />}>
+//   <LoginModal />
+// </Modal>
 
 export default Navbar;
