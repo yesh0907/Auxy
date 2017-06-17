@@ -5,21 +5,60 @@
   align-items: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px; }
+.triage {
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white; }
+}
+.triage .ui.card {
+  background: #d9534f;
+}
 
-.App-intro {
-  font-size: large; }
+.triage .ui.card>.content>.header {
+  font-size: 2em;
+  color: #eceeef;
+}
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg); }
-  to {
-    transform: rotate(360deg); } }
+.triage .ui.card>.content>.description {
+  font-size: 1.25em;
+  color: #eceeef;
+}
+
+.results {
+
+}
+
+.results .ui.card>.content>.header {
+  font-size: 2em;
+}
+
+.results .ui.list .list>.item .header {
+  font-size: 2em;
+}
+
+.results .ui.card .meta {
+  font-size: 1.25em;
+  padding-top: 10px;
+}
+
+.results .ui.list .list>.item>.content, .ui.list>.item>.content {
+  line-height: 2em;
+}
+
+.results .ui.celled.list>.item .header {
+  font-size:1.5em;
+}
+
+.results .ui.celled.list>.item:first-child {
+  /*background-color: rgba(0,0,0,.2);*/
+  border-top: 2px solid #d9534f;
+  border-bottom: 2px solid #d9534f;
+}
+
+.results .ui.celled.list>.item:first-child .header {
+  color: #d9534f;
+  font-size:1.75em;
+}
+
+.results .ui.celled.list>.item:first-child .description {
+  color: #d9534f;
+  font-size: 1.25em;
+}
