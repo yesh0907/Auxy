@@ -16,7 +16,7 @@ class LoginForm extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="container" style={{marginTop: '25px'}}>
         <Grid columns={2} divided>
           <Grid.Row>
             <Grid.Column>
