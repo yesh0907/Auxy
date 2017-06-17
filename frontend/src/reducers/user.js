@@ -22,11 +22,7 @@ export default function diagnosis(state=initialState, action) {
     case UPDATE_RECORDS:
       return {
         ...state,
-<<<<<<< HEAD
         records: state.records.push(action.payload)
-=======
-        records: records.push(action.payload)
->>>>>>> 0557c6bcd91595e0d5524e8ab9a29943016bfc4f
       }
     default:
       return state;
