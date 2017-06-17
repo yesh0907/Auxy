@@ -7,14 +7,11 @@ import 'react-input-range/lib/css/index.css';
 //Self-made Styles for Form
 import '../styles/symptomform.css';
 //React-Router
-import { Link } from 'react-router-dom';
-import Autosuggest from 'react-autosuggest';
 
 import _ from 'lodash';
 
 let algoliasearch = require('algoliasearch');
 let axios = require('axios');
-let baseUrl = 'https://auxy-ahsg.herokuapp.com/';
 
 let client = algoliasearch('S2379UOSVF', '11d9d26a522ab9bde5f1078f71a2d68f');
 let index = client.initIndex('symptoms');
@@ -23,78 +20,23 @@ class SymptomForm extends Component {
   constructor() {
     super();
     this.state = {
-      genders: [
-        { key: 'm', text: 'Male', value: 'male' },
-        { key: 'f', text: 'Female', value: 'female' }
-      ],
-      symptoms: [
-        { key: 'a', text: 'Nyeah', value: 'nyeah' },
-        { key: 'b', text: 'Sarthak', value: 'sarthak' },
-      ],
-      age: 35,
-      symptomNames: [],
-      value: "",
-      isMaleBtnActive: false,
-      isFemaleBtnActive: false
+      value: ""
     }
   }
 
-  isMaleActive(e) {
-    e.preventDefault();
-    if (this.state.isMaleBtnActive && !this.state.isFemaleBtnActive)
-      this.setState({isMaleBtnActive: false});
-    else {
-      this.setState({isMaleBtnActive: true, isFemaleBtnActive: false});
-    }
-  }
-
-  isFemaleActive(e) {
-    e.preventDefault();
-    if (this.state.isFemaleBtnActive && !this.state.isMaleBtnActive)
-      this.setState({isFemaleBtnActive: false});
-    else {
-      this.setState({isMaleBtnActive: false, isFemaleBtnActive: true});
-    }
-  }
-
-  handleSubmit(event) {
-
+  isMale() {
+    return (this.props.user.sex === 'male' ? true : false);
   }
 
   componentWillMount() {
-    let allSymptoms = [];
-    let outerThis = this;
-    axios.get(baseUrl + 'diagnosis/symptoms')
-      .then((response) => {
-        const symptoms = response.data;
-        for (let symptom in symptoms) {
-          let symp = symptoms[symptom];
-          allSymptoms.push({
-            name: symp.common_name,
-            id: symp.id,
-            sex_filter: symp.sex_filter
-          });
-        }
-      })
-      .then((_) => {
-        if (window.localStorage.getItem("allSymptoms") === null) {
-          window.localStorage.setItem("allSymptoms", JSON.stringify(allSymptoms));
-        }
-        this.setState({symptoms: JSON.parse(window.localStorage.getItem("allSymptoms"))});
-        let jsonNames = JSON.parse(window.localStorage.getItem("allSymptoms")).map(symptom => symptom.name);
-        let symptomNames = [];
-        jsonNames.map((symptom, index) => {
-          // console.log(symptom, index)
-            symptomNames.push({
-              key: index,
-              text: symptom,
-              value: symptom
-            });
-          }
-        );
-        this.setState({symptomNames: symptomNames});
-      });
-    }
+    this.setState({
+      isFetching: false,
+      savedSymptoms: [],
+      symptoms: [],
+      allEvidence: [],
+      options: this.getOptions('a'),
+    })
+  }
 
   handleChange(input) {
     index.search(input, function searchDone(err, content) {
@@ -102,11 +44,7 @@ class SymptomForm extends Component {
         console.err(err);
         return;
       };
-
-      for (var h in content.hits) {
-        console.log('Hit(' + content.hits[h].id + '): ' + content.hits[h].name.toString());
-      }
-    })
+    });
   }
 
   getOptions(input) {
@@ -117,40 +55,43 @@ class SymptomForm extends Component {
         return;
       };
       let arrayOfHits = [];
+      let allIds = {};
       for (let h in content.hits) {
-        console.log('Hit(' + content.hits[h].id + '): ' + content.hits[h].name.toString());
-        console.log(content.hits[h].objectID);
+        allIds[content.hits[h].id] = content.hits[h].name.toString();
         arrayOfHits.push({
           key: content.hits[h].objectID,
           text: content.hits[h].name.toString(),
-          value: _.snakeCase(content.hits[h].name.toString())
+          value: _.snakeCase(content.hits[h].name.toString()),
+          id: content.hits[h].id
         });
       };
       outerThis.setState({
         options: arrayOfHits,
-        isFetching: false
+        isFetching: false,
+        allEvidence: allIds
       });
     });
   }
 
-  componentWillMount() {
-    this.setState({
-      isFetching: false,
-      multiple: true,
-      search: true,
-      searchQuery: null,
-      savedSymptoms: [],
-      options: this.getOptions('a'),
-    })
-  }
   //Handles List of Confirmed Symptoms
   handleChange = (e, { value }) => {
     let currentSymptoms = this.state.savedSymptoms;
+    let currentEvidence = this.state.symptoms;
     let alreadySymptom = false;
     let index = 0;
     let newVal = _.replace({value}.value, /\_/g, ' ');
     newVal = _.upperFirst(newVal);
-    console.log(newVal);
+    // console.log(newVal);
+    let all = this.state.allEvidence;
+    // console.log(all);
+    for (let x in this.state.allEvidence) {
+      if (all[x] === newVal) {
+        currentEvidence.push({
+          id: x,
+          choice_id: "present"
+        });
+      }
+    }
     for (let symptom in currentSymptoms) {
       if (currentSymptoms[symptom].value == newVal) {
         alreadySymptom = true;
@@ -162,29 +103,36 @@ class SymptomForm extends Component {
       currentSymptoms.push({
         value: newVal
       });
-      this.setState({ savedSymptoms: currentSymptoms});
+      this.setState({ savedSymptoms: currentSymptoms });
     }
-    console.log(currentSymptoms);
+    this.setState({ symptoms: currentEvidence });
   };
   //Constantly Updates
-  handleSearchChange = (e, value) => {this.setState({ searchQuery: value }); this.fetchOptions(value)};
+  handleSearchChange = (e, value) => { this.fetchOptions(value) };
 
   fetchOptions = (input) => {
     this.setState({ isFetching: true })
     this.getOptions(input);
   }
 
+  handleSubmit(e) {
+    e.preventDefault();
+    this.props.diagnose(this.state.symptoms);
+    console.log(this.props);
+    this.props.history.push('/questions', {});
+  }
+
   render() {
-    const { multiple, options, isFetching, search, value } = this.state;
+    const { options, isFetching, search, value } = this.state;
     return (
       <div>
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.handleSubmit.bind(this)}>
           <Form.Field>
-            <label>Gender</label>
+            <label>Sex</label>
             <Button.Group size="massive" style={{marginLeft: '26px'}}>
-              <Button color="blue" content="Male" icon='male' labelPosition="left" active={this.state.isMaleBtnActive} onClick={this.isMaleActive.bind(this)} inverted={this.state.isMaleBtnActive} />
+              <Button color="blue" content="Male" icon='male' labelPosition="left" active={this.isMale()} inverted={this.isMale()} />
               <Button.Or />
-              <Button color="pink" content="Female" icon='female' labelPosition="right" active={this.state.isFemaleBtnActive} onClick={this.isFemaleActive.bind(this)} inverted={this.state.isFemaleBtnActive} />
+              <Button color="pink" content="Female" icon='female' labelPosition="right" active={!this.isMale()} inverted={this.isMale()} />
             </Button.Group>
           </Form.Field>
           <Form.Field>
@@ -192,19 +140,18 @@ class SymptomForm extends Component {
             <InputRange
               maxValue={99}
               minValue={1}
-              value={this.state.age}
-              onChange={value => this.setState({age: value})}
+              value={this.props.user.age}
               />
-            <Label pointing>{this.state.age}</Label>
+            <Label pointing>{this.props.user.age}</Label>
           </Form.Field>
           <br />
           <Form.Field>
             <label>Symptoms</label>
             <Dropdown
               fluid
-              selection
-              search={search}
+              search={true}
               options={options}
+              selection
               value={value}
               placeholder='Add Symptoms'
               onChange={this.handleChange}
@@ -216,17 +163,15 @@ class SymptomForm extends Component {
           <Form.Field inline>
             <label>Selected Symptoms</label>
             <List selection>
-              {this.state.savedSymptoms.map((symptom, index) => (<List.Item key={index} onClick={console.log(symptom.value)}><List.Content><List.Header>{symptom.value}</List.Header></List.Content></List.Item>))}
+              {this.state.savedSymptoms.map((symptom, index) => (<List.Item key={index}><List.Content><List.Header>{symptom.value}</List.Header></List.Content></List.Item>))}
             </List>
           </Form.Field>
-          <Button type="submit" color="teal" size='big' as={Link} to={'/questions'}>Diagnose</Button>
+          <br />
+          <Button type="submit" size="big" color="teal">Diagnose</Button>
         </Form>
       </div>
     );
   }
 }
-
-//          <Dropdown placeholder='Select Symptoms' fluid multiple search selection options={this.state.symptomNames} />
-
 
 export default SymptomForm;
