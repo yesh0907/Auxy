@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import * as Actions from '../actions';
+
 //Components
 import HomePage from '../components/homepage.jsx';
 import Navbar from '../components/navbar.jsx';
@@ -6,6 +11,11 @@ import Navbar from '../components/navbar.jsx';
 import '../styles/App.css';
 
 class App extends Component {
+  componentWillMount() {
+    console.log(this.props.user);
+    this.props.actions.getUser(this.props.user.user_id);
+  }
+
   render() {
     return (
       <div>
@@ -15,4 +25,17 @@ class App extends Component {
   }
 }
 
-export default App;
+function mapStateToProps(state) {
+  return {
+    user: state.user,
+    diagnosis: state.diagnosis
+  }
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Actions, dispatch)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
