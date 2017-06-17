@@ -16,9 +16,11 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props);
+    const { user, actions, history } = this.props;
     return (
       <div>
-        <HomePage />
+        <HomePage user={user} diagnose={actions.diagnose} history={history} />
       </div>
     );
   }

@@ -2,16 +2,22 @@ import axios from 'axios';
 
 export const FETCH_USER = 'FETCH_USER';
 export const UPDATE_RECORDS = 'UPDATE_RECORDS';
+
 export const CREATE_RECORD = 'CREATE_RECORD';
 export const CREATE_DIAGNOSIS = 'CREATE_DIAGNOSIS';
 export const FETCH_DIAGNOSIS = 'FETCH_DIAGNOSIS';
 export const UPDATE_DIAGNOSIS = 'UPDATE_DIAGNOSIS';
+export const UPDATE_SYMPTOMS = 'UPDATE_SYMPTOMS';
 export const FETCH_TRIAGE = 'FETCH_TRIAGE';
 export const UPDATE_QUESTION = 'UPDATE_QUESTION';
 export const FETCH_ALL_SYMPTOMS = 'FETCH_ALL_SYMPTOMS';
 export const FETCH_SHORTEST = 'FETCH_SHORTEST';
 export const FETCH_KTPH = 'FETCH_KTPH';
 export const FETCH_TTSH = 'FETCH_TTSH';
+export const DIAGNOSE = 'DIAGNOSE';
+
+export const UPDATE_SEARCH = 'UPDATE_SEARCH';
+
 
 const CONFIG = {
   headers: {'Content-Type': 'application/json'}
@@ -39,7 +45,14 @@ export function createRecord(condition, created_by, symptoms) {
   }
 }
 
-export function createDiagnosis(sex, age, evidence) {
+export function diagnose(evidence) {
+  return (dispatch) => {
+    dispatch(updateSymptoms(evidence));
+    dispatch(createDiagnosis(evidence));
+  }
+}
+
+export function createDiagnosis(evidence, sex='male', age=71) {
   const diag = {sex, age, evidence};
 
   return {
@@ -61,6 +74,13 @@ export function updateDiagnosis(diag) {
   return {
     type: UPDATE_DIAGNOSIS,
     payload: diag
+  }
+}
+
+export function updateSymptoms(symptoms) {
+  return {
+    type: UPDATE_SYMPTOMS,
+    payload: symptoms
   }
 }
 
@@ -105,3 +125,11 @@ export function fetchTTSH() {
     payload: axios.get(`https://auxy-ahsg.herokuapp.com/scrape/ttsh`, CONFIG)
   }
 }
+
+// export function getOptions() {
+//
+// }
+//
+// export function updateSearch() {
+//
+// }

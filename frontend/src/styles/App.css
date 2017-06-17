@@ -5,6 +5,10 @@
   align-items: center;
 }
 
+.or:before {
+  border: 1px solid grey;
+}
+
 .triage {
 
 }

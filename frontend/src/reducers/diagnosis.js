@@ -1,20 +1,21 @@
 import {
   CREATE_DIAGNOSIS,
   UPDATE_DIAGNOSIS,
+  UPDATE_SYMPTOMS,
   FETCH_TRIAGE,
   UPDATE_QUESTION,
   FETCH_ALL_SYMPTOMS,
   FETCH_SHORTEST,
   FETCH_KTPH,
-  FETCH_TTSH
+  FETCH_TTSH,
+  UPDATE_SEARCH
 } from '../actions';
 
 const initialState = {
-  value: '',
+  search: '',
   currentDiagnosis: {},
   allSymptoms: {},
-  symptoms: {},
-  evidence: [],
+  symptoms: [],
   question: {},
   conditions: [],
   triage_level: '',
@@ -35,6 +36,11 @@ export default function diagnosis(state=initialState, action) {
       return {
         ...state,
         currentDiagnosis: action.payload
+      }
+    case UPDATE_SYMPTOMS:
+      return {
+        ...state,
+        symptoms: action.payload
       }
     case FETCH_TRIAGE:
       let data = action.payload.data;
@@ -71,6 +77,11 @@ export default function diagnosis(state=initialState, action) {
       return {
         ...state,
         ttsh: data
+      }
+    case UPDATE_SEARCH:
+      return {
+        ...state,
+        search: action.payload
       }
     default:
       return state;
