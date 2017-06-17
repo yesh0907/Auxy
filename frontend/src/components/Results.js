@@ -9,7 +9,7 @@ import HospitalMap from './results/hospital_map';
 export default class Results extends Component {
 	render() {
 		return (
-			<div>
+			<div className="Page">
 				<Navbar></Navbar>
 				<ResultsStepper/>
 				<br/>
@@ -21,14 +21,15 @@ export default class Results extends Component {
 					<ResultsList/>
 				</div>
 				<br/>
-				<Divider/>
-				<div className="App">
+				<br/>
+				<div className="App directions">
 					<div className="col-md-8">
+						<div style={{height: '0px', background: 'white'}}></div>
 						<h1>Directions</h1>
 						<p>Follow the directions to following hospital to receive the quickest care.</p> 
 					</div>
 				</div>
-				<br/>
+				<div style={{height: '10px', background: 'white'}}></div>
 				<HospitalMap/>
 			</div>
 		);
