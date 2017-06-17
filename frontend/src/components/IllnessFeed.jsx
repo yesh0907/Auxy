@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Item, Popup, Icon, Button } from 'semantic-ui-react';
 
 let axios = require('axios');
 let baseUrl = 'https://auxy-ahsg.herokuapp.com/';
@@ -29,10 +30,25 @@ class IllnessFeed extends Component {
 
   render() {
     return (
-      <div>
-        <Feed>
-
-        </Feed>
+      <div className="container" id="illnessFeed">
+        <Item.Group>
+          {pastIllnesses.map((illness) => (
+            <Item>
+              <Item.Content>
+                <Item.Header>{illness.illnessName}</Item.Header>
+                <Item.Meta>{illness.illnessDate}</Item.Meta>
+                <Item.Description>
+                  <Popup
+                    trigger={<Button><Icon name="frown" />{illness.numberOfSymptoms}</Button>}
+                    content={illness.symptoms}
+                    position={'right center'}
+                    inverted
+                    />
+                </Item.Description>
+              </Item.Content>
+            </Item>
+          ))}
+        </Item.Group>
       </div>
     );
   }

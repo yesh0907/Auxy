@@ -7,6 +7,8 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 
 import App from './containers/App';
 import LoginPage from './components/LoginPage';
+import IllnessFeed from './components/IllnessFeed';
+import QuestionsPage from './components/QuestionsPage';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
 
@@ -18,6 +20,8 @@ ReactDOM.render((
       <div>
         <Route exact path="/" component={App} />
         <Route path="/login" component={LoginPage} />
+        <Route path="/accountHistory" component={IllnessFeed} />
+        <Route path="/questions" component={QuestionsPage} />
       </div>
     </Router>
   </Provider>
