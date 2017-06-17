@@ -18,9 +18,9 @@ class Navbar extends Component {
   render() {
     return (
       <div>
-        <Menu color={'teal'} inverted>
+        <Menu color={'teal'} inverted borderless>
           <Menu.Item as={Link} to='/'>
-            <Image src={process.env.PUBLIC_URL + 'auxy.png'} size='tiny' />
+            <Image src={process.env.PUBLIC_URL + 'auxy-white.png'} size='mini' />
           </Menu.Item>
           <Menu.Item style={{fontSize: '20px'}} name="About" as={Link} to="/about" />
           <Modal trigger={<Menu.Item position="right" style={{fontSize: '20px'}} name="Login" />}>
