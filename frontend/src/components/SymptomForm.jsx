@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
 //Semantic-UI
-import { Input, Grid, Header, Button, Form, Checkbox, Dropdown } from 'semantic-ui-react'
+import { Input, Grid, Header, Button, Form, Checkbox, Dropdown, Label } from 'semantic-ui-react';
+
+import InputRange from 'react-input-range';
+import 'react-input-range/lib/css/index.css';
+import '../styles/symptomform.css'
 
 class SymptomForm extends Component {
   constructor() {
@@ -13,9 +17,16 @@ class SymptomForm extends Component {
       symptoms: [
         { key: 'a', text: 'Nyeah', value: 'nyeah' },
         { key: 'b', text: 'Sarthak', value: 'sarthak' },
-      ]
+      ],
+      age: 35
     }
   }
+
+  handleChange(event) {
+    console.log(event);
+    event => this.setState({age: event});
+  }
+
   render() {
     return (
       <div>
@@ -25,8 +36,15 @@ class SymptomForm extends Component {
           </Form.Field>
           <Form.Field>
             <label>Age</label>
-            <input type="number" placeholder="Age" />
+            <InputRange
+              maxValue={99}
+              minValue={1}
+              value={this.state.age}
+              onChange={value => this.setState({age: value})}
+              />
+            <Label pointing>{this.state.age}</Label>
           </Form.Field>
+          <br />
           <Form.Field>
             <label>Symptoms</label>
             <Dropdown placeholder='Select Symptoms' fluid multiple search selection options={this.state.symptoms} focus />
