@@ -19,7 +19,9 @@ class Navbar extends Component {
     return (
       <div>
         <Menu color={'teal'} inverted>
-          <Menu.Item style={{fontSize: '20px'}} name="Home" as={Link} to='/'/>
+          <Menu.Item as={Link} to='/'>
+            <Image src={process.env.PUBLIC_URL + 'auxy.png'} size='tiny' />
+          </Menu.Item>
           <Menu.Item style={{fontSize: '20px'}} name="About" as={Link} to="/about" />
           <Modal trigger={<Menu.Item position="right" style={{fontSize: '20px'}} name="Login" />}>
             <LoginModal />
