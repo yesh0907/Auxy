@@ -12,8 +12,11 @@
 
 ActiveRecord::Schema.define(version: 20170617085026) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "records", force: :cascade do |t|
-    t.integer "created_by"
+    t.bigint "created_by"
     t.string "condition"
     t.text "symptoms"
     t.datetime "created_at", null: false
