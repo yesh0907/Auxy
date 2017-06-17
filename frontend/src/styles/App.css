@@ -62,3 +62,8 @@
   color: #d9534f;
   font-size: 1.25em;
 }
+
+.hospital {
+  display: flex;
+  flex-direction: row;
+}

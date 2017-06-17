@@ -11,6 +11,7 @@ import IllnessFeed from './components/IllnessFeed';
 import QuestionsPage from './components/QuestionsPage';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
+import Results from './components/Results';
 
 const store = configureStore();
 
@@ -20,6 +21,7 @@ ReactDOM.render((
       <div>
         <Route exact path="/" component={App} />
         <Route path="/login" component={LoginPage} />
+        <Route path="/results" component={Results} />
         <Route path="/accountHistory" component={IllnessFeed} />
         <Route path="/questions" component={QuestionsPage} />
       </div>

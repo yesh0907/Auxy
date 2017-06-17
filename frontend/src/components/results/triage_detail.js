@@ -1,7 +1,15 @@
 import React from 'react';
-import { Card, Icon } from 'semantic-ui-react';
+import { Card, Icon, Button } from 'semantic-ui-react';
+import $ from 'jquery';
+import Scroll from 'react-scroll';
+
+var scroll = Scroll.animateScroll;
 
 export default class TriageDetail extends React.Component {
+	scrollToBottom() {
+    	scroll.scrollToBottom();
+  	}
+  	
 	render() {
 		return (
 			<div className="triage col-md-8">
@@ -13,12 +21,21 @@ export default class TriageDetail extends React.Component {
 	        			</Card.Header>
 	        			
 	        			<Card.Description>Your symptoms suggest that you are in urgent need of care.
-	        			<br/><br/>Please go to the hospital listed below to received the 
+	        			<br/><br/>Please go to the hospital listed below to receive the 
 	        			 fastest care.</Card.Description>
+	        			 <br/>
+	        			<Button onClick={event => this.scrollToBottom()} animated='vertical'>
+      						<Button.Content visible>Directions</Button.Content>
+      						<Button.Content hidden>
+        						<Icon name='down arrow' />
+      						</Button.Content>
+   						</Button>
 	      			</Card.Content>
 	    		</Card>
 	    	</div>
 	    	
 		);
 	}
+
+	
 }
