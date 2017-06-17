@@ -1,4 +1,4 @@
-import { GET_USER } from '../actions';
+import { FETCH_USER } from '../actions';
 
 const initialState = {
   user_id: 1,
