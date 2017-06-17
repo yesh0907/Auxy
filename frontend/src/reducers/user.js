@@ -1,4 +1,4 @@
-import { FETCH_USER } from '../actions';
+import { FETCH_USER, UPDATE_RECORDS } from '../actions';
 
 const initialState = {
   user_id: 1,
@@ -10,7 +10,7 @@ const initialState = {
 
 export default function diagnosis(state=initialState, action) {
   switch (action.type) {
-    case GET_USER:
+    case FETCH_USER:
       const data = action.payload.data;
       return {
         ...state,
@@ -18,6 +18,11 @@ export default function diagnosis(state=initialState, action) {
         sex: data.sex,
         age: data.age,
         records: data.records
+      }
+    case UPDATE_RECORDS:
+      return {
+        ...state,
+        records: records.push(action.payload)
       }
     default:
       return state;
