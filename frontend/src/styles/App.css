@@ -70,3 +70,9 @@
 .ui.card {
   box-shadow: none;
 }
+
+.hospital {
+  display: flex;
+  flex-direction: row;
+}
+

@@ -8,6 +8,7 @@
 =======
 >>>>>>> 0557c6bcd91595e0d5524e8ab9a29943016bfc4f
     "axios": "^0.16.2",
+    "jquery": "^3.2.1",
     "react": "^15.6.1",
     "react-autocomplete": "^1.5.9",
     "react-autosuggest": "^9.1.0",
@@ -15,6 +16,7 @@
     "react-input-range": "^1.1.4",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",
+    "react-scroll": "^1.5.2",
     "redux": "^3.7.0",
     "redux-promise": "^0.5.3",
     "redux-thunk": "^2.2.0",
