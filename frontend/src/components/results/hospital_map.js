@@ -215,11 +215,12 @@ export default class HospitalMap extends React.Component {
 
        return (
        		<div className="hospital">
-	           <div ref={(input) => {this.map = input}} id="map" style={{position:'absolute', width:'49%', height:'100%', background:'grey'}}>   
+	           <div ref={(input) => {this.map = input}} id="map" style={{position:'absolute', width:'49%', height:'75%', background:'grey'}}>   
 	           </div>
-	           <div ref={(input) => {this.panel = input}} id="panel" style={{position:'absolute', width:'49%', left:'51%', height:'100%', background:'inherit'}}>
+	           
+             <div ref={(input) => {this.panel = input}} id="panel" style={{position:'absolute', width:'49%', left:'51%', height:'75%', background:'inherit'}}>
 	           </div>
-           	</div>
+          </div>
         );
 	}
 }

@@ -9,6 +9,7 @@ import App from './containers/App';
 import LoginPage from './components/LoginPage';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
+import Results from './components/Results';
 
 const store = configureStore();
 
@@ -18,6 +19,7 @@ ReactDOM.render((
       <div>
         <Route exact path="/" component={App} />
         <Route path="/login" component={LoginPage} />
+        <Route path="/results" component={Results} />
       </div>
     </Router>
   </Provider>
