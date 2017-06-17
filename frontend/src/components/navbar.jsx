@@ -18,10 +18,10 @@ class Navbar extends Component {
   render() {
     return (
       <div>
-        <Menu pointing secondary>
-          <Menu.Item name="Home" as={Link} to='/'/>
-          <Menu.Item name="About" as={Link} to="/about" />
-          <Modal trigger={<Menu.Item position="right" name="Login" />}>
+        <Menu color={'teal'} inverted>
+          <Menu.Item style={{fontSize: '20px'}} name="Home" as={Link} to='/'/>
+          <Menu.Item style={{fontSize: '20px'}} name="About" as={Link} to="/about" />
+          <Modal trigger={<Menu.Item position="right" style={{fontSize: '20px'}} name="Login" />}>
             <LoginModal />
           </Modal>
         </Menu>

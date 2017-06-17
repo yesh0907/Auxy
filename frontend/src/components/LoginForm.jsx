@@ -6,7 +6,7 @@ import { Input, Grid, Header, Button, Form, Checkbox } from 'semantic-ui-react'
 class LoginForm extends Component {
   constructor() {
     super();
-    //Change to Redux 
+    //Change to Redux
     this.state = {
       options: [
         { key: 'm', text: 'Male', value: 'male' },
@@ -30,7 +30,7 @@ class LoginForm extends Component {
                   <label>Password</label>
                   <input placeholder="Password" />
                 </Form.Field>
-                <Form.Button color="blue">Login</Form.Button>
+                <Form.Button color="teal">Login</Form.Button>
               </Form>
             </Grid.Column>
             <Grid.Column>
@@ -55,7 +55,7 @@ class LoginForm extends Component {
                   <label>Password</label>
                   <input placeholder="Password" />
                 </Form.Field>
-                <Form.Button color="blue">Sushmit</Form.Button>
+                <Form.Button color="teal">Sign Up</Form.Button>
               </Form>
             </Grid.Column>
           </Grid.Row>
