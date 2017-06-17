@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //Semantic-UI
-import { Input, Grid, Header, Button, Form, Checkbox, Dropdown, Label, List } from 'semantic-ui-react';
+import { Input, Grid, Header, Button, Form, Checkbox, Dropdown, Label, List, Icon } from 'semantic-ui-react';
 //Imports Input Range Slider
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
@@ -23,7 +23,7 @@ class SymptomForm extends Component {
   constructor() {
     super();
     this.state = {
-      options: [
+      genders: [
         { key: 'm', text: 'Male', value: 'male' },
         { key: 'f', text: 'Female', value: 'female' }
       ],
@@ -33,10 +33,29 @@ class SymptomForm extends Component {
       ],
       age: 35,
       symptomNames: [],
-      value: ""
+      value: "",
+      isMaleBtnActive: false,
+      isFemaleBtnActive: false
     }
   }
 
+  isMaleActive(e) {
+    e.preventDefault();
+    if (this.state.isMaleBtnActive && !this.state.isFemaleBtnActive)
+      this.setState({isMaleBtnActive: false});
+    else {
+      this.setState({isMaleBtnActive: true, isFemaleBtnActive: false});
+    }
+  }
+
+  isFemaleActive(e) {
+    e.preventDefault();
+    if (this.state.isFemaleBtnActive && !this.state.isMaleBtnActive)
+      this.setState({isFemaleBtnActive: false});
+    else {
+      this.setState({isMaleBtnActive: false, isFemaleBtnActive: true});
+    }
+  }
 
   handleSubmit(event) {
 
@@ -161,7 +180,12 @@ class SymptomForm extends Component {
       <div>
         <Form onSubmit={this.handleSubmit}>
           <Form.Field>
-            <Form.Select label="Gender" options={this.state.options} placeholder="Gender" />
+            <label>Gender</label>
+            <Button.Group size="massive" style={{marginLeft: '26px'}}>
+              <Button color="blue" content="Male" icon='male' labelPosition="left" active={this.state.isMaleBtnActive} onClick={this.isMaleActive.bind(this)} inverted={this.state.isMaleBtnActive} />
+              <Button.Or />
+              <Button color="pink" content="Female" icon='female' labelPosition="right" active={this.state.isFemaleBtnActive} onClick={this.isFemaleActive.bind(this)} inverted={this.state.isFemaleBtnActive} />
+            </Button.Group>
           </Form.Field>
           <Form.Field>
             <label>Age</label>
