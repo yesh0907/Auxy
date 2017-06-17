@@ -37,7 +37,11 @@ export default function diagnosis(state=initialState, action) {
         currentDiagnosis: action.payload
       }
     case FETCH_TRIAGE:
+<<<<<<< HEAD
       let data = action.payload.data;
+=======
+      const data = action.payload.data;
+>>>>>>> 0557c6bcd91595e0d5524e8ab9a29943016bfc4f
       return {
         ...state,
         triage_level: data["triage_level"],
@@ -49,25 +53,41 @@ export default function diagnosis(state=initialState, action) {
         question: action.payload
       }
     case FETCH_ALL_SYMPTOMS:
+<<<<<<< HEAD
       data = action.payload.data;
+=======
+      const data = action.payload.data;
+>>>>>>> 0557c6bcd91595e0d5524e8ab9a29943016bfc4f
       return {
         ...state,
         allSymptoms: data
       }
     case FETCH_SHORTEST:
+<<<<<<< HEAD
       data = action.payload.data;
+=======
+      const data = action.payload.data;
+>>>>>>> 0557c6bcd91595e0d5524e8ab9a29943016bfc4f
       return {
         ...state,
         shortest: data
       }
     case FETCH_KTPH:
+<<<<<<< HEAD
       data = action.payload.data;
+=======
+      const data = action.payload.data;
+>>>>>>> 0557c6bcd91595e0d5524e8ab9a29943016bfc4f
       return {
         ...state,
         ktph: data
       }
     case FETCH_TTSH:
+<<<<<<< HEAD
       data = action.payload.data;
+=======
+      const data = action.payload.data;
+>>>>>>> 0557c6bcd91595e0d5524e8ab9a29943016bfc4f
       return {
         ...state,
         ttsh: data
