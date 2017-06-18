@@ -8,7 +8,9 @@ export default class SingleQuestion extends React.Component {
 		const new_symptom = {id: question['items'][0]['id'], choice_id: 'present'};
 		const evidence = [...d.symptoms, new_symptom];
 		diagnose(evidence)
-		history.push('/results', {});
+		window.setTimeout(() => {	
+			history.push('/results', {});
+		}, 1000);
 	}
 
 	render() {
