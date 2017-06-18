@@ -166,7 +166,7 @@ class SymptomForm extends Component {
             </List>
           </Form.Field>
           <br />
-          <Button type="submit" size="large" color="teal">Diagnose</Button>
+          <Button type="submit" size="big" color="teal">Diagnose</Button>
         </Form>
       </div>
     );

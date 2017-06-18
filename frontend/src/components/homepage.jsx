@@ -8,7 +8,7 @@ class HomePage extends Component {
   render() {
     const { user, diagnose, history } = this.props;
     return (
-      <div>
+      <div className="Page">
         <Navbar></Navbar>
         <SymptomStepper />
         <br />
