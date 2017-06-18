@@ -16,6 +16,7 @@ class Navbar extends Component {
     this.setState({loginButton: true})
   }
   render() {
+    let user = "Donald Trump";
     return (
       <div>
         <Menu color={'teal'} inverted borderless>
@@ -23,7 +24,7 @@ class Navbar extends Component {
             <Image src={process.env.PUBLIC_URL + 'auxy-white.png'} size='mini' />
           </Menu.Item>
           <Menu.Item style={{fontSize: '20px'}} name="About" as={Link} to="/about" />
-          <Menu.Item position="right" style={{fontSize: '20px'}} name="Login" as={Link} to='/login' />
+          <Menu.Item position="right" style={{fontSize: '20px'}} icon='user' name={user} as={Link} to='/login' />
         </Menu>
       </div>
     );

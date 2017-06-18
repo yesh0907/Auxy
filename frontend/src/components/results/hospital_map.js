@@ -26,7 +26,7 @@ export default class HospitalMap extends React.Component {
 			    routeattributes : 'waypoints,summary,shape,legs',
 			    maneuverattributes: 'direction,action',
 			    waypoint0: loc,
-			    waypoint1: '1.2836,103.8607'
+			    waypoint1: '1.424255,103.838613'
     		};
     		router.calculateRoute(
     			routeRequestParams,
@@ -64,7 +64,7 @@ export default class HospitalMap extends React.Component {
   			center: {lat:1.2967, lng:103.7874},
   			zoom: 13
 		});
-	
+
 		const behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
 
 
@@ -85,7 +85,7 @@ export default class HospitalMap extends React.Component {
     			bubble.open();
   			}
 		}
-		
+
 		function addRouteShapeToMap(route){
   			var strip = new H.geo.Strip(),
     			routeShape = route.shape,
@@ -211,13 +211,13 @@ export default class HospitalMap extends React.Component {
 
 	}
 
-	render() {		
+	render() {
 
        return (
        		<div className="hospital">
-	           <div ref={(input) => {this.map = input}} id="map" style={{position:'absolute', width:'49%', height:'75%', background:'grey'}}>   
+	           <div ref={(input) => {this.map = input}} id="map" style={{position:'absolute', width:'49%', height:'75%', background:'grey'}}>
 	           </div>
-	           
+
              <div ref={(input) => {this.panel = input}} id="panel" style={{position:'absolute', width:'49%', left:'51%', height:'75%', background:'inherit'}}>
 	           </div>
           </div>
