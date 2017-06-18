@@ -23,7 +23,7 @@ class Navbar extends Component {
           <Menu.Item as={Link} to='/'>
             <Image src={process.env.PUBLIC_URL + 'auxy-white.png'} size='mini' />
           </Menu.Item>
-          <Menu.Item style={{fontSize: '20px'}} name="About" as={Link} to="/about" />
+          <Menu.Item position="center" style={{fontSize: '20px'}}>Auxy</Menu.Item>
           <Menu.Item position="right" style={{fontSize: '20px'}} icon='user' name={user} as={Link} to='/login' />
         </Menu>
       </div>
