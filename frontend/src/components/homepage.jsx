@@ -10,7 +10,7 @@ class HomePage extends Component {
     return (
       <div className="Page">
         <Navbar></Navbar>
-        <SymptomStepper />
+        <SymptomStepper active={this.props.active} />
         <br />
         { user.name === "" ? undefined :  <SymptomCard user={user} diagnose={diagnose} history={history} /> }
       </div>
