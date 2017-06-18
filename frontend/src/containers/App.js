@@ -19,7 +19,7 @@ class App extends Component {
     const { user, actions, history } = this.props;
     return (
       <div className="Page">
-        <HomePage user={user} diagnose={actions.diagnose} history={history} />
+        <HomePage user={user} diagnose={actions.diagnose} history={history} active={'/'} />
       </div>
     );
   }
