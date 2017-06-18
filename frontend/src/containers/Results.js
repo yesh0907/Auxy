@@ -9,6 +9,7 @@ import ResultsStepper from '../components/ResultsStepper';
 import TriageDetail from '../components/results/triage_detail';
 import ResultsList from '../components/results/results_list';
 import HospitalMap from '../components/results/hospital_map';
+import SymptomStepper from '../components/SymptomStepper';
 
 class Results extends Component {
 	componentWillMount() {
@@ -22,7 +23,7 @@ class Results extends Component {
 		return (
 			<div className="Page">
 				<Navbar></Navbar>
-				<ResultsStepper/>
+				<SymptomStepper active={'/results'} />
 				<br/>
 				<div className="App">
 					<TriageDetail/>

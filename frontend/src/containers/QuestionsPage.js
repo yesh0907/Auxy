@@ -43,7 +43,7 @@ class QuestionsPage extends Component {
     return (
       <div className="Page">
         <Navbar />
-        <SymptomStepper />
+        <SymptomStepper active={'/questions'} />
         <div className="questions-container">
           <h2>Questions</h2>
           {questionItem()}
