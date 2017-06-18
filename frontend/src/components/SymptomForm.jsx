@@ -81,11 +81,10 @@ class SymptomForm extends Component {
     let index = 0;
     let newVal = _.replace({value}.value, /\_/g, ' ');
     newVal = _.upperFirst(newVal);
-    // console.log(newVal);
     let all = this.state.allEvidence;
     // console.log(all);
-    for (let x in this.state.allEvidence) {
-      if (all[x] === newVal) {
+    for (let x in all) {
+      if ((all[x].replace(/,/i, "")) === newVal) {
         currentEvidence.push({
           id: x,
           choice_id: "present"

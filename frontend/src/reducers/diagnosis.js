@@ -2,6 +2,7 @@ import {
   CREATE_DIAGNOSIS,
   UPDATE_DIAGNOSIS,
   UPDATE_SYMPTOMS,
+  UPDATE_SYMPTOM,
   FETCH_TRIAGE,
   UPDATE_QUESTION,
   FETCH_ALL_SYMPTOMS,
@@ -17,7 +18,7 @@ const initialState = {
   allSymptoms: {},
   symptoms: [],
   question: {},
-  conditions: [],
+  condition: [],
   triage_level: '',
   serious: [],
   shortest: '',
@@ -28,6 +29,7 @@ const initialState = {
 export default function diagnosis(state=initialState, action) {
   switch (action.type) {
     case CREATE_DIAGNOSIS:
+      console.log(action.payload);
       return {
         ...state,
         currentDiagnosis: action.payload
@@ -36,6 +38,12 @@ export default function diagnosis(state=initialState, action) {
       return {
         ...state,
         currentDiagnosis: action.payload
+      }
+    case UPDATE_SYMPTOM:
+      console.log(action.payload);
+      return {
+        ...state,
+        symptoms: [...state.symptoms, action.payload]
       }
     case UPDATE_SYMPTOMS:
       return {
@@ -50,9 +58,17 @@ export default function diagnosis(state=initialState, action) {
         serious: data["serious"]
       };
     case UPDATE_QUESTION:
+      data = action.payload.data;
+      if (data["conditions"][0]["probability"] >= 0.4) {
+        console.log("setting");
+        return {
+          ...state,
+          condition: data["conditions"]
+        }
+      }
       return {
         ...state,
-        question: action.payload
+        question: action.payload.data["question"]
       }
     case FETCH_ALL_SYMPTOMS:
       data = action.payload.data;

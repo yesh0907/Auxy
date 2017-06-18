@@ -4,7 +4,7 @@ import { Button, Card, Image, Icon, Form, Radio, Divider, Grid } from 'semantic-
 export default class GroupMultipleQuestions extends React.Component {
 	render() {
 		return (
-			<div className="col-md-8">
+			<div className="col-md-8 question">
 				<Card raised fluid>
 					<Card.Content>
 	       				<Card.Header>

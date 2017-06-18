@@ -5,7 +5,7 @@ import { Button, Card, Image, Icon, Grid } from 'semantic-ui-react';
 export default class GroupSingleQuestion extends React.Component {
 	render() {
 		return(
-			<div className="col-md-8">
+			<div className="col-md-8 question">
 				<Card raised fluid>
 	      			<Card.Content>
 	       				<Card.Header>

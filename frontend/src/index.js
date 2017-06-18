@@ -8,10 +8,11 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import App from './containers/App';
 import LoginPage from './components/LoginPage';
 import IllnessFeed from './components/IllnessFeed';
-import QuestionsPage from './components/QuestionsPage';
+import QuestionsPage from './containers/QuestionsPage';
+import Results from './containers/Results';
 import registerServiceWorker from './registerServiceWorker';
 import './index.css';
-import Results from './components/Results';
+
 
 const store = configureStore();
 

@@ -2,18 +2,27 @@ import React from 'react';
 import { Button, Card, Image, Icon } from 'semantic-ui-react';
 
 export default class SingleQuestion extends React.Component {
+	async clickAction(e) {
+		e.preventDefault();
+		const { question, history, d, diagnose } = this.props;
+		const new_symptom = {id: question['items'][0]['id'], choice_id: 'present'};
+		const evidence = [...d.symptoms, new_symptom];
+		diagnose(evidence)
+		history.push('/results', {});
+	}
+
 	render() {
+		const { question } = this.props;
+
 		return(
-			<div className="col-md-8">
+			<div className="col-md-8 question">
 				<Card raised fluid>
 	      			<Card.Content>
-	       				<Card.Header>
-	          				Question
-	        			</Card.Header>
+	       				<Card.Header>{question.text}</Card.Header>
 	      			</Card.Content>
 	      			<Card.Content extra>
 	        			<Button.Group>
-							<Button animated color='green' size='big'>
+							<Button animated color='green' size='big' onClick={this.clickAction.bind(this)}>
 	      						<Button.Content visible>Yes</Button.Content>
 	      						<Button.Content hidden>
 	        						<Icon name='checkmark' />
