@@ -7,9 +7,9 @@ class SymptomStepper extends Component {
     return (
       <div>
         <Step.Group fluid>
-          <Step active icon='info circle' title="Information Input" />
-          <Step icon='comments' title="Questions" />
-          <Step icon='file text outline' title="Results" />
+          <Step active={this.props.active == '/' ? true : false} icon='info circle' title="Information Input" />
+          <Step active={this.props.active == '/questions' ? true : false} icon='comments' title="Questions" />
+          <Step active={this.props.active == '/results' ? true : false} icon='file text outline' title="Results" />
         </Step.Group>
       </div>
     );
