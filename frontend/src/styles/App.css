@@ -9,6 +9,10 @@
   align-items: center;
 }
 
+ol.directions {
+  background: transparent;
+}
+
 .or:before {
   border: 1px solid grey;
 }
