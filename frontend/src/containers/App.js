@@ -5,8 +5,8 @@ import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
 
 //Components
-import HomePage from '../components/homepage.jsx';
-import Navbar from '../components/navbar.jsx';
+import HomePage from '../components/homepage.js';
+import Navbar from '../components/navbar.js';
 //CSS
 import '../styles/App.css';
 
