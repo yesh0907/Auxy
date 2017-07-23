@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
 
 //Other Components
-import Navbar from '../components/navbar';
+import Navbar from '../components/Navbar';
 import SingleQuestion from '../components/Question/SingleQuestion';
 import GroupMultipleQuestions from '../components/Question/GroupMultipleQuestion';
 import SymptomStepper from '../components/Symptom/SymptomStepper';
