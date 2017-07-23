@@ -5,9 +5,9 @@ import * as Actions from '../actions';
 
 //Other Components
 import Navbar from '../components/navbar';
-import SingleQuestion from '../components/questions/single_question';
-import GroupMultipleQuestions from '../components/questions/group_multiple_question';
-import SymptomStepper from '../components/SymptomStepper';
+import SingleQuestion from '../components/Question/SingleQuestion';
+import GroupMultipleQuestions from '../components/Question/GroupMultipleQuestion';
+import SymptomStepper from '../components/Symptom/SymptomStepper';
 
 import '../styles/Questions.css';
 

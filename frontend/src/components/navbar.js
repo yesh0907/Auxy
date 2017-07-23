@@ -3,7 +3,7 @@ import { Input, Menu, Segment } from 'semantic-ui-react';
 import { Button, Header, Image, Modal } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 //Other Components
-import LoginModal from './LoginModal';
+import LoginModal from './Login/LoginModal';
 
 class Navbar extends Component {
   constructor() {

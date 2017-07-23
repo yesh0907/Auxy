@@ -2,7 +2,7 @@ import React from 'react';
 import { Button, Card, Image, Icon } from 'semantic-ui-react';
 
 export default class SingleQuestion extends React.Component {
-	async clickAction(e) {
+	clickAction(e) {
 		e.preventDefault();
 		const { question, history, d, diagnose } = this.props;
 		const new_symptom = {id: question['items'][0]['id'], choice_id: 'present'};
