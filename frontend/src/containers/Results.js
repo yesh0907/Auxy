@@ -5,11 +5,10 @@ import * as Actions from '../actions';
 import { Divider } from 'semantic-ui-react';
 
 import Navbar from '../components/navbar';
-import ResultsStepper from '../components/ResultsStepper';
-import TriageDetail from '../components/results/triage_detail';
-import ResultsList from '../components/results/results_list';
-import HospitalMap from '../components/results/hospital_map';
-import SymptomStepper from '../components/SymptomStepper';
+import ResultsStepper from '../components/Results/ResultsStepper';
+import TriageDetail from '../components/Results/TriageDetail';
+import ResultsList from '../components/Results/ResultsList';
+import SymptomStepper from '../components/Symptom/SymptomStepper';
 
 class Results extends Component {
 	componentWillMount() {
@@ -18,8 +17,6 @@ class Results extends Component {
 
 	render() {
 		const { actions, diagnose } = this.props;
-		// console.log(diagnose);
-
 		return (
 			<div className="Page">
 				<Navbar></Navbar>
@@ -41,7 +38,6 @@ class Results extends Component {
 					</div>
 				</div>
 				<br/>
-				<HospitalMap />
 			</div>
 		)
 	}

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 //Other Components
-import Navbar from './navbar.js';
-import LoginForm from './LoginForm.js';
+import Navbar from '../components/Navbar';
+import LoginForm from '../components/Login/LoginForm';
 
 class HomePage extends Component {
   render() {

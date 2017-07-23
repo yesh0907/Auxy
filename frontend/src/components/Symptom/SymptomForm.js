@@ -5,8 +5,8 @@ import { Input, Grid, Header, Button, Form, Checkbox, Dropdown, Label, List, Ico
 import InputRange from 'react-input-range';
 import 'react-input-range/lib/css/index.css';
 //Self-made Styles for Form
-import '../styles/symptomform.css';
-//React-Router
+import '../../styles/symptomform.css';
+
 
 import _ from 'lodash';
 
