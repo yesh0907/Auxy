@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 //Other Components
-import Navbar from './navbar.jsx';
+import Navbar from './navbar.js';
 import SymptomCard from './SymptomCard';
 import SymptomStepper from './SymptomStepper';
 
