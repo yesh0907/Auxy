@@ -1,7 +1,7 @@
 import { FETCH_USER, UPDATE_RECORDS } from '../actions';
 
 const initialState = {
-  user_id: 1,
+  id: 1,
   name: '',
   records: [],
   sex: '',
