@@ -12,7 +12,9 @@ class DiagnosisController < ApplicationController
   end
 
   def all_symptoms
-    json_response(AllSymptoms.call)
+    # json_response(AllSymptoms.call)
+    file = File.join(Rails.root, 'app', 'infermedica', 'data.json')
+    json_response(File.read(file))
   end
 
   private
