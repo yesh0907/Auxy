@@ -22,3 +22,7 @@
 .input-range__label--max .input-range__label-container {
   bottom: 100%
 }
+
+ .ui.form input:not([type]) {
+  border: none;
+} 

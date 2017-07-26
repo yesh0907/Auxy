@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import * as Actions from '../actions';
 import { Divider } from 'semantic-ui-react';
 
-import Navbar from '../components/navbar';
+import Navbar from '../components/Navbar';
 import ResultsStepper from '../components/Results/ResultsStepper';
 import TriageDetail from '../components/Results/TriageDetail';
 import ResultsList from '../components/Results/ResultsList';

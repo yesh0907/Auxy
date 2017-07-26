@@ -1,25 +1,32 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-
 import * as Actions from '../actions';
 
-//Components
 import HomePage from '../components/Homepage';
-import Navbar from '../components/Navbar';
-//CSS
 import '../styles/App.css';
 
 class App extends Component {
   componentWillMount() {
-    this.props.actions.fetchUser(this.props.user.user_id);
+    const { user, actions } = this.props;
+    if (user.id !== 1) {
+      actions.fetchUser(this.props.user.id);
+    }
   }
 
   render() {
-    const { user, actions, history } = this.props;
+    const { user, diagnosis, actions, history } = this.props;
     return (
       <div className="Page">
-        <HomePage user={user} diagnose={actions.diagnose} history={history} active={'/'} />
+        <HomePage 
+          user={user} 
+          diagnose={actions.diagnose}
+          fetchAllSymptoms={actions.fetchAllSymptoms}
+          symptoms={diagnosis.allSymptoms}
+          currentSymptoms={diagnosis.symptoms}
+          updateSymptoms={actions.updateSymptoms}
+          history={history} 
+          active={'/'} />
       </div>
     );
   }
@@ -28,7 +35,7 @@ class App extends Component {
 function mapStateToProps(state) {
   return {
     user: state.user,
-    diagnosis: state.diagnosis
+    diagnosis: state.diagnose
   }
 }
 
