@@ -11,8 +11,6 @@ class HomePage extends Component {
       diagnose,
       fetchAllSymptoms,
       symptoms,
-      currentSymptoms,
-      updateSymptoms,
       history
     } = this.props;
     return (
@@ -25,8 +23,6 @@ class HomePage extends Component {
           diagnose={diagnose} 
           fetchAllSymptoms={fetchAllSymptoms}
           symptoms={symptoms}
-          currentSymptoms={currentSymptoms}
-          updateSymptoms={updateSymptoms}
           history={history}
         />
       </div>

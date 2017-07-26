@@ -23,10 +23,9 @@ class App extends Component {
           diagnose={actions.diagnose}
           fetchAllSymptoms={actions.fetchAllSymptoms}
           symptoms={diagnosis.allSymptoms}
-          currentSymptoms={diagnosis.symptoms}
-          updateSymptoms={actions.updateSymptoms}
           history={history} 
-          active={'/'} />
+          active={'/'} 
+        />
       </div>
     );
   }

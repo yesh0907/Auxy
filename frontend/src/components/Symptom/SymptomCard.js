@@ -10,8 +10,6 @@ class SymptomCard extends Component {
             diagnose,
             fetchAllSymptoms,
             symptoms,
-            currentSymptoms,
-            updateSymptoms,
             history 
         } = this.props;
         return (
@@ -26,13 +24,11 @@ class SymptomCard extends Component {
                                     </Card.Header>
                                     <Card.Description>
                                         <SymptomForm 
-                                        user={user} 
-                                        diagnose={diagnose}
-                                        fetchAllSymptoms={fetchAllSymptoms}
-                                        symptoms={symptoms}
-                                        currentSymptoms={currentSymptoms}
-                                        updateSymptoms={updateSymptoms}
-                                        history={history}
+                                            user={user} 
+                                            diagnose={diagnose}
+                                            fetchAllSymptoms={fetchAllSymptoms}
+                                            symptoms={symptoms}
+                                            history={history}
                                         />
                                     </Card.Description>
                                 </Card.Content>
