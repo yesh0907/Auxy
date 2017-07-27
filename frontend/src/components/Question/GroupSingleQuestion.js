@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { Component } from 'react';
 import SingleQuestion from './SingleQuestion';
 import { Button, Card, Image, Icon, Grid } from 'semantic-ui-react';
 
-export default class GroupSingleQuestion extends React.Component {
+export default class GroupSingleQuestion extends Component {
 	render() {
 		return(
 			<div className="col-md-8 question">

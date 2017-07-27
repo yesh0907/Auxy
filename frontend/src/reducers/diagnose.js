@@ -1,8 +1,6 @@
 import _ from 'lodash';
 import {
     CREATE_DIAGNOSIS,
-    UPDATE_DIAGNOSIS,
-    UPDATE_SYMPTOM,
     UPDATE_SYMPTOMS,
     UPDATE_QUESTION,
     FETCH_TRIAGE,
@@ -24,20 +22,9 @@ export default function diagnosis(state=initialState, action) {
     let data;
     switch (action.type) {
         case CREATE_DIAGNOSIS:
-            console.log(action.payload);
             return {
                 ...state,
                 currentDiagnosis: action.payload
-            }
-        case UPDATE_DIAGNOSIS:
-            return {
-                ...state,
-                currentDiagnosis: action.payload
-            }
-        case UPDATE_SYMPTOM:
-            return {
-                ...state,
-                symptoms: [...state.symptoms, action.payload]
             }
         case UPDATE_SYMPTOMS:
             return {
@@ -47,7 +34,7 @@ export default function diagnosis(state=initialState, action) {
         case UPDATE_QUESTION:
             data = action.payload.data;
             if (data["conditions"][0]["probability"] >= 0.4) {
-                console.log("setting");
+                // console.log("setting");
                 return {
                     ...state,
                     condition: data["conditions"]
@@ -55,7 +42,7 @@ export default function diagnosis(state=initialState, action) {
             }
             return {
                 ...state,
-                question: action.payload.data["question"]
+                question: data["question"]
             }
         case FETCH_TRIAGE:
             data = action.payload.data;

@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Button, Card, Image, Icon, Form, Radio, Divider, Grid } from 'semantic-ui-react';
 
-export default class GroupMultipleQuestions extends React.Component {
+export default class GroupMultipleQuestions extends Component {
 	render() {
 		return (
 			<div className="col-md-8 question">

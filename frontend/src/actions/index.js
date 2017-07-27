@@ -41,13 +41,10 @@ export function diagnose(evidence, sex, age) {
     }
 }
 
-export function diagnoseAfterQuestions(symptom, evidence, diag) {
+export function updateDiagnosis(evidence, sex, age) {
     return (dispatch) => {
-        dispatch(updateSymptom(symptom))
-        .then(() => {
-            dispatch(createDiagnosis(evidence));
-            dispatch(fetchDiagnosis(diag));
-        });
+        dispatch(updateSymptoms(evidence));
+        dispatch(fetchDiagnosis({sex, age, evidence}));
     }
 }
 
@@ -58,20 +55,6 @@ export function updateRecords(record) {
     }
 }
 
-export function updateDiagnosis(payload) {
-    return {
-        type: UPDATE_DIAGNOSIS,
-        payload
-    }
-}
-
-export function updateSymptom(payload) {
-    return {
-      type: UPDATE_SYMPTOM,
-      payload
-    }
-  }
-
 export function updateSymptoms(payload) {
     return {
         type: UPDATE_SYMPTOMS,
@@ -80,6 +63,7 @@ export function updateSymptoms(payload) {
 }
 
 export function updateQuestion(payload) {
+    console.log("NEW Q:", payload);
     return {
         type: UPDATE_QUESTION,
         payload
@@ -87,10 +71,8 @@ export function updateQuestion(payload) {
 }
 
 export function fetchDiagnosis(diag) {
-    console.log("D:", diag);
     return (dispatch) => {
         const payload = axios.post(`https://auxy-ahsg.herokuapp.com/diagnosis/diagnose`, diag, CONFIG)
-        
         dispatch(updateQuestion(payload));
     }
 }
